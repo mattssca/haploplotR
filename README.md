@@ -1,8 +1,6 @@
 # haploplotR
 R package for visualizing haplotype-resolved inversions, associated metrics and variant characteristics
 
-![flow-chart](https://github.com/mattssca/haploplotR/blob/master/haploplot.flow.png)
-
 * This package takes output produced by InvertypeR and splits data table into two data frames depending on genotype (H1 and H2)
 * Haplotypes are filtered on blacklisted regions and variants intersecting centromeres
 * Package outputs:
@@ -29,3 +27,4 @@ data.table |1.12.8 | R
 psych |2.0.8 | R
 ImageMagick | 7.0.10-31 | bash
 
+![flow-chart](https://github.com/mattssca/haploplotR/blob/master/haploplot.flow.png)
