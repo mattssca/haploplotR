@@ -129,10 +129,10 @@ homo.h2 = h2 %>% filter(genotype %in% c("1|1"))
 
 # compile genome-wide bed files
 hbed1 = haplotype1 %>%
-  select(chr, start, end, genotype)
+  select(chr, start, end, ID, probability, genotype)
 
 hbed2 = haplotype2 %>%
-  select(chr, start, end, genotype)
+  select(chr, start, end, ID, probability, genotype)
 
 # convert back negative values for haplotype1
 hbed1$start = hbed1$start * -1
@@ -147,12 +147,10 @@ hbed1$chr = as.factor(hbed1$chr)
 hbed2$chr = as.factor(hbed2$chr)
 
 # adjust genotype for bedfile
-levels(hbed1$genotype)[levels(hbed1$genotype)=="1|0"] = "h1.heterozygous"
-levels(hbed1$genotype)[levels(hbed1$genotype)=="1|1"] = "homozygous"
-levels(hbed2$genotype)[levels(hbed2$genotype)=="0|1"] = "h2.heterozygous"
-
-# drop homozyugous factor level in one data frame
-hbed2 = droplevels(hbed2[!hbed2$genotype == '1|1',])
+levels(hbed1$genotype)[levels(hbed1$genotype)=="1|0"] = "+"
+levels(hbed1$genotype)[levels(hbed1$genotype)=="1|1"] = "+"
+levels(hbed2$genotype)[levels(hbed2$genotype)=="0|1"] = "-"
+levels(hbed2$genotype)[levels(hbed2$genotype)=="1|1"] = "-"
 
 # rbind both haplotypes into one bed file
 bedfile = rbind(hbed1, hbed2)
@@ -160,7 +158,7 @@ bedfile = rbind(hbed1, hbed2)
 # select chr, start, end variables for bed file fomrmat
 # sort bed file
 bedfile = bedfile %>% 
-  select(chr, start, end)
+  select(chr, start, end, ID, probability, genotype)
 
 # calcualte variant size
 bedfile = bedfile %>% 
@@ -176,12 +174,15 @@ bed.size = describeBy(bedfile$size)
 bed.size = bed.size %>% 
   select(n, mean, sd, median, trimmed, mad, min, max, range, skew, kurtosis, se)
 
+bedfile.out = bedfile %>% 
+  select(chr, start, end, ID, probability, genotype)
+
 # set variables for exporting
 out4 = sprintf("./out/%s.bed", sample.name)
 out5 = sprintf("./out/%s.summary.txt", sample.name)
 
-# export tables
-write.table(bedfile, out4, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+    # export tables
+write.table(bedfile.out, out4, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
 write.table(bed.size, out5, sep = "\t", quote = FALSE, row.names = FALSE)
 
 ################################################## variant size plotting ########################################################

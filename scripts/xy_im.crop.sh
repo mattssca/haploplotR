@@ -74,3 +74,5 @@ mv out/ideograms/chr21.png out/ideograms/chr/chr21.png
 mv out/ideograms/chr22.png out/ideograms/chr/chr22.png
 mv out/ideograms/chrx.png out/ideograms/chr/chrx.png 
 mv out/ideograms/chry.png out/ideograms/chr/chry.png 
+
+img2pdf out/ideograms/ideogram.png -o out/ideograms/ideogram.pdf
