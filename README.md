@@ -1,7 +1,7 @@
   # haploplotR
-R package for visualizing haplotype-resolved inversions, associated metrics and variant characteristics
+Program for visualizing haplotype-resolved inversions, associated metrics and variant characteristics
 
-* This package takes output produced by InvertypeR and splits data table into two data frames depending on genotype (H1 and H2)
+* This set of scripts takes output produced by InvertypeR and splits data table into two data frames depending on genotype (H1 and H2)
 * Haplotypes are filtered on blacklisted regions and variants intersecting centromeres
 * Package outputs:
   * Clickable haplotype-resolved ideograms annotating heterozygous and homozygous variants along each chromosome
