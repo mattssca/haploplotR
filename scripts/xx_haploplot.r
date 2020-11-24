@@ -75,12 +75,6 @@ print("Sucess! Haplotypes exported to ./out")
 
 ################################################## plot ideograms ########################################################
 
-# read in dependencies
-#h1.regions = read.table("./dep/GRCh38.chr.table.neg.txt", sep = "\t", header = TRUE)
-#h1.centromeres = read.table("./dep/GRCh38.centromeres.neg.txt", sep = "\t", header = TRUE)
-#h2.regions = read.table("./dep/GRCh38.chr.table.pos.txt", sep = "\t", header = TRUE)
-#h2.centromeres = read.table("./dep/GRCh38.centromeres.pos.txt", sep = "\t", header = TRUE)
-
 # read variants into R
 h1 = read.table(out1, sep = "\t", header = TRUE)
 h2 = read.table(out2, sep = "\t", header = TRUE)
@@ -90,40 +84,6 @@ hetero.h1 = h1 %>% filter(genotype %in% c("1|0"))
 homo.h1 = h1 %>% filter(genotype %in% c("1|1"))
 hetero.h2 = h2 %>% filter(genotype %in% c("0|1"))
 homo.h2 = h2 %>% filter(genotype %in% c("1|1"))
-
-# construct ideograms
-#haplotype_1 = ggplot() +
-#geom_segment(data = h1.regions, aes(x = start, xend = end, y = chr, yend = chr), color = "#4884F0", lineend = "round", size = 5, stat = "identity", position = position_dodge()) +
-#geom_segment(data = h1.centromeres, aes(x = start, xend = end, y = chr, yend = chr), color = "grey", size = 5) +
-#geom_segment(data = hetero.h1, aes(x = start, xend = end, y = chr, yend = chr), color = "#F0DC3B", size = 5) + 
-#geom_segment(data = homo.h1, aes(x = start, xend = end, y = chr, yend = chr), color = "red", size = 5) + 
-#geom_segment(data = hetero.h1, aes(x = loli.hetero.h1.start, xend = loli.hetero.h1.end, y = chr, yend = chr), color = "green", size = 5) + 
-#geom_segment(data = homo.h1, aes(x = loli.homo.h1.start, xend = loli.homo.h1.end, y = chr, yend = chr), color = "purple", size = 5) + 
-#labs(title = "Haplotype 1", subtitle = "", x = "", y = "", fill = "") +
-#theme(legend.position = "right", plot.title = element_text(hjust = 0.8, size = 15), axis.ticks = element_blank(), axis.text.x = element_blank(),  axis.text.y = element_blank(), panel.grid.minor = element_blank(), panel.grid.major = element_blank(), panel.background = element_blank(), plot.margin = unit(c(0,-0.5,1,1), "cm")) +
-#scale_y_discrete(limits=c("chrX", "chrX", "chr22", "chr22", "chr21", "chr21", "chr20", "chr20", "chr19", "chr19", "chr18", "chr18", "chr17", "chr17", "chr16", "chr16", "chr15", "chr15", "chr14", "chr14", "chr13", "chr13", "chr12", "chr12", "chr11", "chr11", "chr10", "chr10", "chr9", "chr9", "chr8", "chr8", "chr7", "chr7", "chr6", "chr6", "chr5", "chr5", "chr4", "chr4", "chr3", "chr3", "chr2", "chr2", "chr1", "chr1"))
-
-#haplotype_2 = ggplot() +
-#geom_segment(data = h2.regions, aes(x = start, xend = end, y = chr, yend = chr), color = "#4884F0", lineend = "round", size = 5, stat = "identity", position = position_dodge()) +
-#geom_segment(data = h2.centromeres, aes(x = start, xend = end, y = chr, yend = chr), color = "grey", size = 5) +
-#geom_segment(data = hetero.h2, aes(x = start, xend = end, y = chr, yend = chr), color = "#F0DC3B", size = 5) + 
-#geom_segment(data = homo.h2, aes(x = start, xend = end, y = chr, yend = chr), color = "red", size = 5) +
-#geom_segment(data = hetero.h2, aes(x = loli.hetero.h2.start, xend = loli.hetero.h2.end, y = chr, yend = chr), color = "green", size = 5) + 
-#geom_segment(data = homo.h2, aes(x = loli.homo.h2.start, xend = loli.homo.h2.end, y = chr, yend = chr), color = "purple", size = 5) + 
-#labs(title = "Haplotype 2", subtitle = "", x = "", y = "", fill = "") +
-#theme(legend.position = "right", plot.title = element_text(hjust = 0.2, size = 15), axis.ticks = element_blank(), axis.text.x = element_blank(), axis.text.y = element_text(size = 10), panel.grid.minor = element_blank(), panel.grid.major = element_blank(), panel.background = element_blank(), plot.margin = unit(c(0,1.5,1,0), "cm")) +
-#scale_y_discrete(limits=c("chrX", "chrX", "chr22", "chr22", "chr21", "chr21", "chr20", "chr20", "chr19", "chr19", "chr18", "chr18", "chr17", "chr17", "chr16", "chr16", "chr15", "chr15", "chr14", "chr14", "chr13", "chr13", "chr12", "chr12", "chr11", "chr11", "chr10", "chr10", "chr9", "chr9", "chr8", "chr8", "chr7", "chr7", "chr6", "chr6", "chr5", "chr5", "chr4", "chr4", "chr3", "chr3", "chr2", "chr2", "chr1", "chr1"))
-
-# arange plots
-#Haplotypes = grid.arrange(haplotype_1, haplotype_2, nrow = 1, ncol = 2, top = paste0("\n                  ", "   ", sample.name, "\n                  ", " GRCh38", "\n                  "), layout_matrix = rbind(c(1,2)))
-
-# set outputs
-#out3 = sprintf("haplotypes.GRCh38.%s.pdf", sample.name)
-
-# export plot as pdf 
-#ggsave(out3, Haplotypes, path = "./out/", limitsize = FALSE, scale = 1, width = 16, height = 8.5, units = c("in"), dpi = 300)
-
-#print("Genome-wide haplotype assemblies have been sucesfully plotted and exported to ./out")
 
 ################################################## generate bed files ########################################################
 
@@ -648,554 +608,365 @@ names(no.obs) <- c("chr", "start", "end", "size", "coordinate", "genotype")
 
 if(nrow(chr1.ideo.h1.het) == 0){
   chr1.ideo.h1.het <- rbind(chr1.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr1")
 }
 
 if(nrow(chr2.ideo.h1.het) == 0){
   chr2.ideo.h1.het <- rbind(chr2.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr2")
 }
 
 if(nrow(chr3.ideo.h1.het) == 0){
   chr3.ideo.h1.het <- rbind(chr3.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr3")
 }
 
 if(nrow(chr4.ideo.h1.het) == 0){
   chr4.ideo.h1.het <- rbind(chr4.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr4")
 }
 
 if(nrow(chr5.ideo.h1.het) == 0){
   chr5.ideo.h1.het <- rbind(chr5.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr5")
 }
-
 if(nrow(chr6.ideo.h1.het) == 0){
   chr6.ideo.h1.het <- rbind(chr6.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr6")
 }
 
 if(nrow(chr7.ideo.h1.het) == 0){
   chr7.ideo.h1.het <- rbind(chr7.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr7")
 }
 
 if(nrow(chr8.ideo.h1.het) == 0){
   chr8.ideo.h1.het <- rbind(chr8.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr8")
 }
 
 if(nrow(chr9.ideo.h1.het) == 0){
   chr9.ideo.h1.het <- rbind(chr9.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr9")
 }
 
 if(nrow(chr10.ideo.h1.het) == 0){
   chr10.ideo.h1.het <- rbind(chr10.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr10")
 }
 
 if(nrow(chr11.ideo.h1.het) == 0){
   chr11.ideo.h1.het <- rbind(chr11.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr11")
 }
 
 if(nrow(chr12.ideo.h1.het) == 0){
   chr12.ideo.h1.het <- rbind(chr12.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr12")
 }
 
 if(nrow(chr13.ideo.h1.het) == 0){
   chr13.ideo.h1.het <- rbind(chr13.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr13")
 }
 
 if(nrow(chr14.ideo.h1.het) == 0){
   chr14.ideo.h1.het <- rbind(chr14.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr14")
 }
 
 if(nrow(chr15.ideo.h1.het) == 0){
   chr15.ideo.h1.het <- rbind(chr15.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr15")
 }
 
 if(nrow(chr16.ideo.h1.het) == 0){
   chr16.ideo.h1.het <- rbind(chr16.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr16")
 }
 
 if(nrow(chr17.ideo.h1.het) == 0){
   chr17.ideo.h1.het <- rbind(chr17.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr17")
 }
 
 if(nrow(chr18.ideo.h1.het) == 0){
   chr18.ideo.h1.het <- rbind(chr18.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr18")
 }
 
 if(nrow(chr19.ideo.h1.het) == 0){
   chr19.ideo.h1.het <- rbind(chr19.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr19")
 }
 
 if(nrow(chr20.ideo.h1.het) == 0){
   chr20.ideo.h1.het <- rbind(chr20.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr20")
 }
 
 if(nrow(chr21.ideo.h1.het) == 0){
   chr21.ideo.h1.het <- rbind(chr21.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr21")
 }
 
 if(nrow(chr22.ideo.h1.het) == 0){
   chr22.ideo.h1.het <- rbind(chr22.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, Chr22")
 }
 
 if(nrow(chrx.ideo.h1.het) == 0){
   chrx.ideo.h1.het <- rbind(chrx.ideo.h1.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 1, ChrX")
 }
 
 if(nrow(chr1.ideo.h1.hom) == 0){
   chr1.ideo.h1.hom <- rbind(chr1.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr1")
 }
 
 if(nrow(chr2.ideo.h1.hom) == 0){
   chr2.ideo.h1.hom <- rbind(chr2.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr2")
 }
 
 if(nrow(chr3.ideo.h1.hom) == 0){
   chr3.ideo.h1.hom <- rbind(chr3.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr3")
 }
 
 if(nrow(chr4.ideo.h1.hom) == 0){
   chr4.ideo.h1.hom <- rbind(chr4.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr4")
 }
 
 if(nrow(chr5.ideo.h1.hom) == 0){
   chr5.ideo.h1.hom <- rbind(chr5.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr5")
 }
 
 if(nrow(chr6.ideo.h1.hom) == 0){
   chr6.ideo.h1.hom <- rbind(chr6.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr6")
 }
 
 if(nrow(chr7.ideo.h1.hom) == 0){
   chr7.ideo.h1.hom <- rbind(chr7.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr7")
 }
 
 if(nrow(chr8.ideo.h1.hom) == 0){
   chr8.ideo.h1.hom <- rbind(chr8.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr8")
 }
 
 if(nrow(chr9.ideo.h1.hom) == 0){
   chr9.ideo.h1.hom <- rbind(chr9.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr9")
 }
 
 if(nrow(chr10.ideo.h1.hom) == 0){
   chr10.ideo.h1.hom <- rbind(chr10.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr10")
 }
 
 if(nrow(chr11.ideo.h1.hom) == 0){
   chr11.ideo.h1.hom <- rbind(chr11.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr11")
 }
 
 if(nrow(chr12.ideo.h1.hom) == 0){
   chr12.ideo.h1.hom <- rbind(chr12.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr12")
 }
 
 if(nrow(chr13.ideo.h1.hom) == 0){
   chr13.ideo.h1.hom <- rbind(chr13.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr13")
 }
 
 if(nrow(chr14.ideo.h1.hom) == 0){
   chr14.ideo.h1.hom <- rbind(chr14.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr14")
 }
 
 if(nrow(chr15.ideo.h1.hom) == 0){
   chr15.ideo.h1.hom <- rbind(chr15.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr15")
 }
 
 if(nrow(chr16.ideo.h1.hom) == 0){
   chr16.ideo.h1.hom <- rbind(chr16.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr16")
 }
 
 if(nrow(chr17.ideo.h1.hom) == 0){
   chr17.ideo.h1.hom <- rbind(chr17.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr17")
 }
 
 if(nrow(chr18.ideo.h1.hom) == 0){
   chr18.ideo.h1.hom <- rbind(chr18.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr18")
 }
 
 if(nrow(chr19.ideo.h1.hom) == 0){
   chr19.ideo.h1.hom <- rbind(chr19.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr19")
 }
 
 if(nrow(chr20.ideo.h1.hom) == 0){
   chr20.ideo.h1.hom <- rbind(chr20.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr20")
 }
 
 if(nrow(chr21.ideo.h1.hom) == 0){
   chr21.ideo.h1.hom <- rbind(chr21.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr21")
 }
 
 if(nrow(chr22.ideo.h1.hom) == 0){
   chr22.ideo.h1.hom <- rbind(chr22.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, Chr22")
 }
 
 if(nrow(chrx.ideo.h1.hom) == 0){
   chrx.ideo.h1.hom <- rbind(chrx.ideo.h1.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 1, ChrX")
 }
 
 if(nrow(chr1.ideo.h2.het) == 0){
   chr1.ideo.h2.het <- rbind(chr1.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr1")
 }
 
 if(nrow(chr2.ideo.h2.het) == 0){
   chr2.ideo.h2.het <- rbind(chr2.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr2")
 }
 
 if(nrow(chr3.ideo.h2.het) == 0){
   chr3.ideo.h2.het <- rbind(chr3.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr3")
 }
 
 if(nrow(chr4.ideo.h2.het) == 0){
   chr4.ideo.h2.het <- rbind(chr4.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr4")
 }
 
 if(nrow(chr5.ideo.h2.het) == 0){
   chr5.ideo.h2.het <- rbind(chr5.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr5")
 }
 
 if(nrow(chr6.ideo.h2.het) == 0){
   chr6.ideo.h2.het <- rbind(chr6.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr6")
 }
 
 if(nrow(chr7.ideo.h2.het) == 0){
   chr7.ideo.h2.het <- rbind(chr7.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr7")
 }
 
 if(nrow(chr8.ideo.h2.het) == 0){
   chr8.ideo.h2.het <- rbind(chr8.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr8")
 }
 
 if(nrow(chr9.ideo.h2.het) == 0){
   chr9.ideo.h2.het <- rbind(chr9.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr9")
 }
 
 if(nrow(chr10.ideo.h2.het) == 0){
   chr10.ideo.h2.het <- rbind(chr10.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr10")
 }
-
 if(nrow(chr11.ideo.h2.het) == 0){
   chr11.ideo.h2.het <- rbind(chr11.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr11")
 }
 
 if(nrow(chr12.ideo.h2.het) == 0){
   chr12.ideo.h2.het <- rbind(chr12.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr12")
 }
 
 if(nrow(chr13.ideo.h2.het) == 0){
   chr13.ideo.h2.het <- rbind(chr13.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr13")
 }
 
 if(nrow(chr14.ideo.h2.het) == 0){
   chr14.ideo.h2.het <- rbind(chr14.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr14")
 }
-
 if(nrow(chr15.ideo.h2.het) == 0){
   chr15.ideo.h2.het <- rbind(chr15.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr15")
 }
 
 if(nrow(chr16.ideo.h2.het) == 0){
   chr16.ideo.h2.het <- rbind(chr16.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr16")
 }
 
 if(nrow(chr17.ideo.h2.het) == 0){
   chr17.ideo.h2.het <- rbind(chr17.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr17")
 }
 
 if(nrow(chr18.ideo.h2.het) == 0){
   chr18.ideo.h2.het <- rbind(chr18.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr18")
 }
-
 if(nrow(chr19.ideo.h2.het) == 0){
   chr19.ideo.h2.het <- rbind(chr19.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr19")
 }
 
 if(nrow(chr20.ideo.h2.het) == 0){
   chr20.ideo.h2.het <- rbind(chr20.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr20")
 }
 
 if(nrow(chr21.ideo.h2.het) == 0){
   chr21.ideo.h2.het <- rbind(chr21.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr21")
 }
 
 if(nrow(chr22.ideo.h2.het) == 0){
   chr22.ideo.h2.het <- rbind(chr22.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, Chr22")
 }
 
 if(nrow(chrx.ideo.h2.het) == 0){
   chrx.ideo.h2.het <- rbind(chrx.ideo.h2.het, no.obs) 
-}else{
-  print("No heterozygous variants for Haplotype 2, ChrX")
 }
 
 if(nrow(chr1.ideo.h2.hom) == 0){
   chr1.ideo.h2.hom <- rbind(chr1.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr1")
 }
 
 if(nrow(chr2.ideo.h2.hom) == 0){
   chr2.ideo.h2.hom <- rbind(chr2.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr2")
 }
 
 if(nrow(chr3.ideo.h2.hom) == 0){
   chr3.ideo.h2.hom <- rbind(chr3.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr3")
 }
 
 if(nrow(chr4.ideo.h2.hom) == 0){
   chr4.ideo.h2.hom <- rbind(chr4.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr4")
 }
 
 if(nrow(chr5.ideo.h2.hom) == 0){
   chr5.ideo.h2.hom <- rbind(chr5.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr5")
 }
 
 if(nrow(chr6.ideo.h2.hom) == 0){
   chr6.ideo.h2.hom <- rbind(chr6.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr6")
 }
 
 if(nrow(chr7.ideo.h2.hom) == 0){
   chr7.ideo.h2.hom <- rbind(chr7.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr7")
 }
 
 if(nrow(chr8.ideo.h2.hom) == 0){
   chr8.ideo.h2.hom <- rbind(chr8.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr8")
 }
 
 if(nrow(chr9.ideo.h2.hom) == 0){
   chr9.ideo.h2.hom <- rbind(chr9.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr9")
 }
 
 if(nrow(chr10.ideo.h2.hom) == 0){
   chr10.ideo.h2.hom <- rbind(chr10.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr10")
 }
 
 if(nrow(chr11.ideo.h2.hom) == 0){
   chr11.ideo.h2.hom <- rbind(chr11.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr11")
 }
 
 if(nrow(chr12.ideo.h2.hom) == 0){
   chr12.ideo.h2.hom <- rbind(chr12.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr12")
 }
 
 if(nrow(chr13.ideo.h2.hom) == 0){
   chr13.ideo.h2.hom <- rbind(chr13.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr13")
 }
 
 if(nrow(chr14.ideo.h2.hom) == 0){
   chr14.ideo.h2.hom <- rbind(chr14.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr14")
 }
 
 if(nrow(chr15.ideo.h2.hom) == 0){
   chr15.ideo.h2.hom <- rbind(chr15.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr15")
 }
-
 if(nrow(chr16.ideo.h2.hom) == 0){
   chr16.ideo.h2.hom <- rbind(chr16.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr16")
 }
 
 if(nrow(chr17.ideo.h2.hom) == 0){
   chr17.ideo.h2.hom <- rbind(chr17.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr17")
 }
 
 if(nrow(chr18.ideo.h2.hom) == 0){
   chr18.ideo.h2.hom <- rbind(chr18.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr18")
 }
 
 if(nrow(chr19.ideo.h2.hom) == 0){
   chr19.ideo.h2.hom <- rbind(chr19.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr19")
 }
 
 if(nrow(chr20.ideo.h2.hom) == 0){
   chr20.ideo.h2.hom <- rbind(chr20.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr20")
 }
 
 if(nrow(chr21.ideo.h2.hom) == 0){
   chr21.ideo.h2.hom <- rbind(chr21.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr21")
 }
 
 if(nrow(chr22.ideo.h2.hom) == 0){
   chr22.ideo.h2.hom <- rbind(chr22.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, Chr22")
 }
 
 if(nrow(chrx.ideo.h2.hom) == 0){
   chrx.ideo.h2.hom <- rbind(chrx.ideo.h2.hom, no.obs) 
-}else{
-  print("No homozygous variants for Haplotype 2, ChrX")
 }
 
 if(nrow(chr1.ideo.h2.hom.large) == 0){
