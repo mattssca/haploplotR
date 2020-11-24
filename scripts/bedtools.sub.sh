@@ -1,6 +1,6 @@
 #!/bin/bash
 bedtools intersect -a in/bed_reads/*.WW.CC.bam_reads.bed.gz -b in/bed_reads/2x.adjascent.bed -u > out/bed_reads/ww.cc.adj.bed
-sed -i '1s/^/track name=WW.CC.reads visibility=1 colorByStrand="103,139,139 243,165,97"\n/' h
+sed -i '1s/^/track name=WW.CC.reads visibility=1 colorByStrand="103,139,139 243,165,97"\n/'
 
 bedtools intersect -a in/bed_reads/*.WC.CW.bam_reads.bed.gz -b in/bed_reads/2x.adjascent.bed -u > out/bed_reads/wc.cw.adj.bed
 sed -i '1s/^/track name=HG00512.WW.CC.reads visibility=1 colorByStrand="103,139,139 243,165,97"\n/'
