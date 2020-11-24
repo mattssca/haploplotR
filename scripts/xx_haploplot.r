@@ -139,7 +139,7 @@ bedfile.out = bedfile %>%
 
 # set variables for exporting
 out4 = sprintf("./out/bed/%s.bed", sample.name)
-out5 = sprintf("./out/bed/%s.summary.txt", sample.name)
+out5 = sprintf("./out/metrics/%s.summary.txt", sample.name)
 
     # export tables
 write.table(bedfile.out, out4, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
