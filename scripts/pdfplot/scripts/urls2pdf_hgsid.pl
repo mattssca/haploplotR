@@ -110,6 +110,3 @@ my $pdf_out = $pdf_in;
 $pdf_out =~ s/pdf$//i;
 $pdf->save($pdf_out.''.$hgsid.'.pdf');
 warn "Done!\n";
-
-
-print "$hgsid"
