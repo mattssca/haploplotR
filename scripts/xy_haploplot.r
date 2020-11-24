@@ -67,9 +67,9 @@
   haplotype1$end = haplotype1$end * -1
   
   # set variables for exporting
-  out1 = sprintf("./out/H1_%s.txt", sample.name)
-  out2 = sprintf("./out/H2_%s.txt", sample.name)
-  outhap = sprintf("./out/Haploid_%s.txt", sample.name)
+  out1 = sprintf("./out/tables/H1_%s.txt", sample.name)
+  out2 = sprintf("./out/tables/H2_%s.txt", sample.name)
+  outhap = sprintf("./out/tables/Haploid_%s.txt", sample.name)
   
   # export tables
   write.table(haplotype1, out1, sep = "\t", quote = FALSE, row.names = FALSE)
@@ -150,8 +150,8 @@
     select(chr, start, end, ID, probability, genotype)
   
   # set variables for exporting
-  out4 = sprintf("./out/%s.bed", sample.name)
-  out5 = sprintf("./out/%s.summary.txt", sample.name)
+  out4 = sprintf("./out/bed/%s.bed", sample.name)
+  out5 = sprintf("./out/metrics/%s.summary.txt", sample.name)
   
   # export tables
   write.table(bedfile.out, out4, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
