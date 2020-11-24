@@ -35,7 +35,7 @@ reads$V3 = end
 reads = reads %>%
   select(V1, V2, V3) %>% 
   mutate_if(is.numeric, round)  %>%
-  mutate(V2 = if_else(V2 < 0, 0, V2))
+  mutate(V2 = if_else(V2 < 0, 1, V2))
 
 # export as bed file
 write.table(reads, "in/bed_reads/2x.adjascent.bed", quote = F, row.names = F, col.names = F, sep = "\t")
