@@ -148,7 +148,11 @@
   
   bedfile.out = bedfile %>% 
     select(chr, start, end, ID, probability, genotype)
-  
+
+
+  bedfile.out$start <- format(bedfile.out$start,scientific=FALSE)
+  bedfile.out$end <- format(bedfile.out$end,scientific=FALSE)
+
   # set variables for exporting
   out4 = sprintf("./out/bed/%s.bed", sample.name)
   out5 = sprintf("./out/metrics/%s.summary.txt", sample.name)
