@@ -15,8 +15,9 @@ Program for visualizing haplotype-resolved inversions, associated metrics and va
 2. Clone/download repository
 2. cd main folder
 4. Put output from InvertypeR in Input folder
+5. Put composite read-data browser files (BPR output) in  in/bed_reads/ (wc.cw.bed.gz and ww.cc.bed.gz)
 5. If session ID for UCSC genome browser is avaialble, add ID at end of line 5 in scripts/nn_haploplot.sh script, if not unique session ID will be generated
-6. Execute `haploplot_run.sh`
+6. Execute `haploplot_run.sh` and follow prompted instructions
 
 ### Dependencies
 Package | Version | Enviroment
