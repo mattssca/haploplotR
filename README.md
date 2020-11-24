@@ -26,8 +26,9 @@ gridExtra | 2.3 | R
 ggplot2 | 3.3.0 | R
 data.table |1.12.8 | R
 psych |2.0.8 | R
+bedtools |2.26 | bash
 [ImageMagick](https://imagemagick.org/index.php) | 7.0.10-31 | bash
 [img2pdf](https://pypi.org/project/img2pdf/) | 0.4.0 | python
 [PDF-API2](https://metacpan.org/pod/PDF::API2::Simple) | 1.1.14.u | perl
-[LBW](https://metacpan.org/pod/LWP::UserAgent) | 4.69 | perl
+[LBW::UserAgent](https://metacpan.org/pod/LWP::UserAgent) | 4.69 | perl
 
