@@ -44,9 +44,6 @@ convert out/ideograms/plot.title.png out/ideograms/ideogram.png	-append out/ideo
 convert +append out/figs/binned.box.png out/figs/viol.png out/figs/variantsize.png
 rm out/figs/binned.box.png
 rm out/figs/viol.png
-mv out/*summary.txt out/metrics/
-mv out/*.bed out/bed/
-mv out/*.txt out/tables/
 rm out/ideograms/plot.title.png
 rm out/ideograms/1-12.ideogram.png
 rm out/ideograms/13-xy.ideogram.png
